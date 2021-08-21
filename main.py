@@ -12,5 +12,11 @@ infos_ativo = status_invest.get_infos_ativo()
 db = DatabaseSQL()
 db.insert_into(infos_ativo,"statusinvest")
 
+top10 = db.get_top10_from_database()
+
+destinatarios = ["email1@email.com","email2@email.com"]
+email = SendEmail("Um título bacana", destinatarios)
+email.build_email(top10)
+email.enviar_email()
 
 
