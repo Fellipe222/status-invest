@@ -3,14 +3,15 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time, os, database
+import time, os
+from modules.database import DatabaseSQL
 
 class StatusInvest:
     def __init__(self):
         self.root = os.getcwd()
         self.chrome = webdriver.Chrome(executable_path= self.root + r'\chromedriver.exe')      
         self.infos_ativo = {}
-        self.db = database.DatabaseSQL()
+        self.db = DatabaseSQL()
 
     def navigate(self,link):
         time.sleep(1)
@@ -18,8 +19,9 @@ class StatusInvest:
         if "https://" not in link:
             link = "https://" + link
         self.chrome.get(link)
+        self.fecha_popup_status_invest()
 
-    def fecha_popup_instatus_invest(self):
+    def fecha_popup_status_invest(self):
         popup_fechado = False
         count_popup = 0
 
@@ -106,5 +108,4 @@ class StatusInvest:
 
 
 
-        
-        
+
